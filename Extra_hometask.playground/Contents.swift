@@ -1,4 +1,5 @@
 import UIKit
+import Darwin.C.math
 
 // Из книг будет полезно повторить темы:
 // the Basics
@@ -93,10 +94,45 @@ getMood(timeYear: .autumn, weather: .rain)
 // Квадратное уравнение -> AX^2 + BX + C = 0
 
 
+func executeEquation(for a: Double, b: Double, c: Double) -> [Double] {
+    var arrayAnswer: [Double] = []
+    let d = pow(Double(b), 2) - (4 * a * c)
+    if d > 0 {
+        arrayAnswer.append((-b + sqrt(d)) / (2 * a))
+        arrayAnswer.append((-b - sqrt(d)) / (2 * a))
+    } else if d == 0 {
+        arrayAnswer.append((-b + sqrt(d)) / (2 * a))
+    }
+    return arrayAnswer.sorted()
+}
+
+executeEquation(for: 1, b: -2, c: -3)
+
+
+
 // MARK: - Loops
 // 2. Реализуйте 2 фукнции Вдох и Выдох, которые выводят в консоль тектовое описание, своего действия.
 // Реализуйте функцию, которая позволит человеку дышать на протяжении всего времени жизни
 // Время жизни передается в качестве аргумента типа Int.
+
+func inhale() {
+    print("Вдох")
+}
+func exhalation() {
+    print("Выдох")
+}
+// Предположим что человек дышит 5 раз в год
+
+func lifeOfMan(for years: Int) {
+    var i: Float = 0
+    while Int(i) < years {
+        inhale()
+        exhalation()
+        i += 0.2
+    }
+}
+lifeOfMan(for: 2)
+
 
 
 // MARK: - Collections
@@ -106,15 +142,65 @@ getMood(timeYear: .autumn, weather: .rain)
 // "1 2 3 4 5 6 7 8 9 0"
 
 
+
+
+var arrayString: String = "1 2 3 4 5 6 7 8 9 0"
+
+
+
+func summOfArray(for i: String) -> Int {
+    var array: [Int] = []
+    for (_, num) in i.enumerated(){
+        if var _: Int = Int(String(num)) {
+            array.append(Int(String(num))!)
+        }
+    }
+    let summ = array.reduce(0, +)
+    return summ
+}
+
+print(summOfArray(for: arrayString))
+
+
+
+
 // 4. Больше/Меньше
 // Реализуйте 2 функции, которая вернет максимальный и минимальный элемент массива в виде кортежа.
 // 1я - должна искать элементы стандартными средствами.
 // 2я - сами напишите решение для поиска максимального и минимального элемента
 
+let arrayTask4: [Int] = Array(1...15)
+func getMinMax(for array: [Int]) {
+    if let min: Int = array.min(), let max: Int = array.max() {
+        let answer: (min: Int, max: Int) = (min, max)
+        print(answer)
+    }
+}
+getMinMax(for: arrayTask4)
+
+func getMinMaxOther(for array: [Int]) {
+    var min: Int
+    var max: Int
+    min = (array.sorted(by: <))[0]
+    max = (array.sorted(by: >))[0]
+    let answer: (min: Int, max: Int) = (min, max)
+    print(answer)
+}
+getMinMaxOther(for: arrayTask4)
+
+
 
 // 5. Реализуйте функцию, которая принимает массив, а возвращает массив в обратном порядке (не пользуясь стандартными средствами).
 // Реализуйте функцию, которая также принимает последовательность и возвращает массив в обратном порядке (через стандартный метод).
 // Чтобы избежать дублирования кода, сделайте так, чтобы 2я функция вызывала 1ю.
+
+let arrayTask5: [Int] = Array(1...10)
+func returnArray(for array: [Int]) {
+    
+}
+
+
+
 
 
 // 5. Реализуйте функцию doSports, которая принимает количество отжиманий, подтягиваний и приседаний, а возвращает кортеж с переданными параметрами.
