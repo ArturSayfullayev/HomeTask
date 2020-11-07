@@ -27,64 +27,75 @@ enum TimeOfTheYear: String {
         case cold = "Холод"
         case wind = "Ветер"
         
-    
         enum Mood: String{
             case happy = "Отлично!"
             case cry = "Ужасно("
             case soso = "Так себе("
             case omg = "Это ппц, товарищи!"
         }
-        
     }
-    
 }
 
 
-
-
-func getMood (timeYear: TimeOfTheYear, weather: TimeOfTheYear.Weather)  {
+func getMood (timeYear: TimeOfTheYear, weather: TimeOfTheYear.Weather) -> String  {
     var otvet: String
     switch timeYear {
     case .summer:
         switch weather {
-        case .cold: otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
-            case .rain: otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
-            case .snow: otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
-            case .sun: otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .wind: otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
-    }
-        print(otvet)
-        
+        case .cold:
+            otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        case .rain:
+            otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        case .snow:
+            otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
+        case .sun:
+            otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .wind:
+            otvet = "\(TimeOfTheYear.summer.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
+        }
     case .autumn:
         switch weather {
-        case .cold: otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
-            case .rain: otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
-            case .snow: otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
-            case .sun: otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .wind: otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
-    }
-        print(otvet)
+        case .cold:
+            otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
+        case .rain:
+            otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
+        case .snow:
+            otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
+        case .sun:
+            otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .wind:
+            otvet = "\(TimeOfTheYear.autumn.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        }
     case .spring:
         switch weather {
-        case .cold: otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
-            case .rain: otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
-            case .snow: otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
-            case .sun: otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .wind: otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
-    }
-        print(otvet)
+        case .cold:
+            otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        case .rain:
+            otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        case .snow:
+            otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
+        case .sun:
+            otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .wind:
+            otvet = "\(TimeOfTheYear.spring.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.soso.rawValue)"
+        }
     case .winter:
         switch weather {
-        case .cold: otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .rain: otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
-            case .snow: otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .sun: otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
-            case .wind: otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        case .cold:
+            otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.cold.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .rain:
+            otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.rain.rawValue) = \(TimeOfTheYear.Weather.Mood.omg.rawValue)"
+        case .snow:
+            otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.snow.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .sun:
+            otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.sun.rawValue) = \(TimeOfTheYear.Weather.Mood.happy.rawValue)"
+        case .wind:
+            otvet = "\(TimeOfTheYear.winter.rawValue) + \(TimeOfTheYear.Weather.wind.rawValue) = \(TimeOfTheYear.Weather.Mood.cry.rawValue)"
+        }
     }
-        print(otvet)
-    }
+    return otvet
 }
-getMood(timeYear: .autumn, weather: .rain)
+print(getMood(timeYear: .autumn, weather: .rain))
 
 // MARK: - Operators
 // 1. Квадратное уравнение.
@@ -194,11 +205,6 @@ getMinMaxOther(for: arrayTask4)
 // Реализуйте функцию, которая также принимает последовательность и возвращает массив в обратном порядке (через стандартный метод).
 // Чтобы избежать дублирования кода, сделайте так, чтобы 2я функция вызывала 1ю.
 
-let arrayTask5: [Int] = Array(1...10)
-func returnArray(for array: [Int]) {
-    
-}
-
 
 
 
@@ -208,6 +214,70 @@ func returnArray(for array: [Int]) {
 // Найдите чемпиона по каждому из видов единобоств :)
 
 // А еще - реализуйте функцию, которая позволит поменять результаты самого слабого и самого сильного спортсмена.
+
+
+func doSports(push: Int, pull: Int, squats: Int) -> (Int, Int, Int) {
+    let sport = (push: push, pull: pull, squats: squats)
+    return sport
+}
+var mySport = doSports(push: 11, pull: 13, squats: 13)
+var secondSport = doSports(push: 12, pull: 12, squats: 11)
+var thirdSport = doSports(push: 13, pull: 10, squats: 15)
+
+func chempions () {
+    var maxPush: [String: Int] = [:]
+    maxPush.updateValue(mySport.0, forKey: "myResult")
+    maxPush.updateValue(secondSport.0, forKey: "secondResult")
+    maxPush.updateValue(thirdSport.0, forKey: "thirdResult")
+    
+    for (i, v) in maxPush {
+        if v == maxPush.values.max() {
+            print("Чемпион по отжиманиям - \(i)")
+        }
+    }
+    
+    var maxPull: [String: Int] = [:]
+    maxPull.updateValue(mySport.1, forKey: "myResult")
+    maxPull.updateValue(secondSport.1, forKey: "secondResult")
+    maxPull.updateValue(thirdSport.1, forKey: "thirdResult")
+    
+    for (i, v) in maxPull {
+        if v == maxPull.values.max() {
+            print("Чемпион по подтягиваниям - \(i)")
+        }
+    }
+    
+    var maxSquats: [String: Int] = [:]
+    maxSquats.updateValue(mySport.2, forKey: "myResult")
+    maxSquats.updateValue(secondSport.2, forKey: "secondResult")
+    maxSquats.updateValue(thirdSport.2, forKey: "thirdResult")
+    
+    for (i, v) in maxSquats {
+        if v == maxSquats.values.max() {
+            print("Чемпион по приседаниям - \(i)")
+        }
+    }
+}
+chempions()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // MARK: - Strings
