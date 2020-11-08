@@ -205,6 +205,22 @@ getMinMaxOther(for: arrayTask4)
 // Реализуйте функцию, которая также принимает последовательность и возвращает массив в обратном порядке (через стандартный метод).
 // Чтобы избежать дублирования кода, сделайте так, чтобы 2я функция вызывала 1ю.
 
+let arrayForRevers: [Int] = Array(1...15)
+func reversArray(array: [Int]) {
+    var reversArray: [Int] = []
+    for item in stride(from: array.count - 1, through: 0, by: -1) {
+        reversArray.append(array[item])
+    }
+    print(reversArray)
+}
+reversArray(array: arrayForRevers)
+
+func reversArrayStandart(array: [Int]) {
+    let arrayRevers: [Int] = array.reversed()
+    print(arrayRevers)
+}
+reversArrayStandart(array: arrayForRevers)
+
 
 
 
@@ -216,19 +232,20 @@ getMinMaxOther(for: arrayTask4)
 // А еще - реализуйте функцию, которая позволит поменять результаты самого слабого и самого сильного спортсмена.
 
 
-func doSports(push: Int, pull: Int, squats: Int) -> (Int, Int, Int) {
+func doSports(push: Int, pull: Int, squats: Int) -> (push: Int, pull: Int, squats: Int) {
     let sport = (push: push, pull: pull, squats: squats)
     return sport
 }
-var mySport = doSports(push: 11, pull: 13, squats: 13)
-var secondSport = doSports(push: 12, pull: 12, squats: 11)
-var thirdSport = doSports(push: 13, pull: 10, squats: 15)
+var ivan = doSports(push: 11, pull: 13, squats: 13)
+var artem = doSports(push: 12, pull: 12, squats: 11)
+var alex = doSports(push: 13, pull: 10, squats: 15)
+
 
 func chempions () {
     var maxPush: [String: Int] = [:]
-    maxPush.updateValue(mySport.0, forKey: "myResult")
-    maxPush.updateValue(secondSport.0, forKey: "secondResult")
-    maxPush.updateValue(thirdSport.0, forKey: "thirdResult")
+    maxPush.updateValue(ivan.0, forKey: "ivan")
+    maxPush.updateValue(artem.0, forKey: "artem")
+    maxPush.updateValue(alex.0, forKey: "alex")
     
     for (i, v) in maxPush {
         if v == maxPush.values.max() {
@@ -237,9 +254,9 @@ func chempions () {
     }
     
     var maxPull: [String: Int] = [:]
-    maxPull.updateValue(mySport.1, forKey: "myResult")
-    maxPull.updateValue(secondSport.1, forKey: "secondResult")
-    maxPull.updateValue(thirdSport.1, forKey: "thirdResult")
+    maxPull.updateValue(ivan.1, forKey: "ivan")
+    maxPull.updateValue(artem.1, forKey: "artem")
+    maxPull.updateValue(alex.1, forKey: "alex")
     
     for (i, v) in maxPull {
         if v == maxPull.values.max() {
@@ -248,9 +265,9 @@ func chempions () {
     }
     
     var maxSquats: [String: Int] = [:]
-    maxSquats.updateValue(mySport.2, forKey: "myResult")
-    maxSquats.updateValue(secondSport.2, forKey: "secondResult")
-    maxSquats.updateValue(thirdSport.2, forKey: "thirdResult")
+    maxSquats.updateValue(ivan.2, forKey: "ivan")
+    maxSquats.updateValue(artem.2, forKey: "artem")
+    maxSquats.updateValue(alex.2, forKey: "alex")
     
     for (i, v) in maxSquats {
         if v == maxSquats.values.max() {
@@ -263,33 +280,52 @@ chempions()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // MARK: - Strings
 // 6. Реализуйте функцию, которая будет проверять, является ли слово палиндромом (примеры: «комок», «ротор»).
 // Если в слове содержится четное количество букв - верните сообщение об ошибке.
 // !!! Обратите внимание!
 // Программа должна уметь обрабатывать слово, даже если в нём использованы символы разного регистра.
 
+func palindrom(item: String) {
+    if Int(item.count) % 2 == 0 {
+        print("Ошибка, выберите другое слово")
+    } else if item.lowercased() == String(item.lowercased().reversed()) {
+        print("Это слово - палиндром")
+    } else {
+        print("Это слово не палиндром")
+    }
+}
+palindrom(item: "Ротор")
+
 
 // 7. Реализуйте функцию, которая принимает строку, и может посчитать и вывести в консоль количество гласных, согласных, цифр, знаков препинания
 // А также общее количество символов
 // Для вывода используйет интерполяцию, для реализации бизнес-логики - циклы и оператор switch case.
+
+func countOfSimbols(rusWord: String) {
+    var arrayAChar: [Character] = []
+    var arrayBChar: [Character] = []
+    var arrayPunct: [Character] = []
+    var arrayInt: [Character] = []
+    for i in rusWord.lowercased() {
+        switch i {
+        case "я", "и", "ю", "ы", "а", "о", "э", "е", "ё", "у":
+            arrayAChar.append(i)
+        case ",", ".", "!", ":", ";", "?", " ":
+            arrayPunct.append(i)
+        case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0":
+            arrayInt.append(i)
+        default:
+            arrayBChar.append(i)
+            
+        }
+    }
+    print("В этом предложении \(arrayAChar.count) гласных букв, \(arrayBChar.count) согласных букв, \(arrayPunct.count) знаков препинания/пробелов  и \(arrayInt.count) цифр(ы). Всего в предложении \(rusWord.count) символов" )
+}
+countOfSimbols(rusWord: "Меня зовут Артур, мне 29 лет!")
+
+
+
 
 
 // MARK: - Optionals
@@ -298,10 +334,55 @@ chempions()
 // Найдите целочисленную сумму всех этих констант (используйте приведение типов к Int)
 // В Вашем решении используйте и optional binding, и forced unwrapping.
 
+let one: String = "one"
+let two: String = "two"
+let three: String = "3"
+let four: String = "4"
+let five: String = "five"
+let six: String = "six"
+let seven: String = "7"
+let eight: String = "8"
+let nine: String = "nine"
+let ten: String = "ten"
+
+var summOptional: Int = 0
+
+var arrayOptional: [String] = []
+arrayOptional.append(one)
+arrayOptional.append(two)
+arrayOptional.append(three)
+arrayOptional.append(four)
+arrayOptional.append(five)
+arrayOptional.append(six)
+arrayOptional.append(seven)
+arrayOptional.append(eight)
+arrayOptional.append(nine)
+arrayOptional.append(ten)
+
+for i in arrayOptional {
+    if let _: Int = Int(i) {
+        summOptional += Int(i)!
+    }
+}
+print(summOptional)
+
+
 
 // MARK: - Enumerations
 // 9. Создайте Enum дни недели, в котором должны храниться связанные значения с названиями для каждого дня.
 // Выведите в консоль названия всех дней недели.
+
+enum Week: String, CaseIterable {
+    case monday = "Понедельник"
+    case tuesday = "Вторник"
+    case wednesday = "Среда"
+    case thursday = "Четверг"
+    case friday = "Пятница"
+    case saturday = "Суббота"
+    case sunday = "Воскресение"
+}
+
+Week.allCases.forEach { print($0.rawValue) }
 
 
 // 10. Реализуйте решение через функции, которые могут принимать день недели в качестве входного аргумента, а также проверят и сообщат ваш рабочий график.
@@ -312,4 +393,26 @@ chempions()
 
 // Формат вывода выберите сами: можно использовать все, что мы прошли к этому моменту.
 
+func myWeek(for day: Week) -> String{
+    var answer: String
+    switch day {
+    case .monday:
+        answer = "Сегодня рабочий день а вечером курсы."
+    case .tuesday:
+        answer = "Сегодня рабочий день."
+    case .wednesday:
+        answer = "Сегодня рабоий день."
+    case .thursday:
+        answer = "Сегодня рабочий день а вечером курсы."
+    case .friday:
+        answer = "Сегодня рабоий день."
+    case .saturday:
+        answer = "Сегодня выходной, можно гулять!"
+    case .sunday:
+        answer = "Сегодня выходной, можно гулять!"
+    }
+    return answer
+}
 
+var today: Week = .monday
+print(myWeek(for: today))
