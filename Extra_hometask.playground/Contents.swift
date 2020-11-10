@@ -181,21 +181,23 @@ print(summOfArray(for: arrayString))
 // 2я - сами напишите решение для поиска максимального и минимального элемента
 
 let arrayTask4: [Int] = Array(1...15)
-func getMinMax(for array: [Int]) {
+
+func getMinMax(for array: [Int]) -> (min: Int, max: Int) {
+    var answer: (min: Int, max: Int) = (min: 0, max: 0)
     if let min: Int = array.min(), let max: Int = array.max() {
-        let answer: (min: Int, max: Int) = (min, max)
-        print(answer)
+        answer = (min: min, max: max)
     }
+    return answer
 }
 getMinMax(for: arrayTask4)
 
-func getMinMaxOther(for array: [Int]) {
+func getMinMaxOther(for array: [Int]) -> (min: Int, max: Int) {
     var min: Int
     var max: Int
     min = (array.sorted(by: <))[0]
     max = (array.sorted(by: >))[0]
     let answer: (min: Int, max: Int) = (min, max)
-    print(answer)
+    return answer
 }
 getMinMaxOther(for: arrayTask4)
 
@@ -206,22 +208,29 @@ getMinMaxOther(for: arrayTask4)
 // Чтобы избежать дублирования кода, сделайте так, чтобы 2я функция вызывала 1ю.
 
 let arrayForRevers: [Int] = Array(1...15)
-func reversArray(array: [Int]) {
-    var reversArray: [Int] = []
-    for item in stride(from: array.count - 1, through: 0, by: -1) {
-        reversArray.append(array[item])
-    }
-    print(reversArray)
-}
-reversArray(array: arrayForRevers)
+//func reversArray(array: [Int]) {
+//    var reversArray: [Int] = []
+//    for item in stride(from: array.count - 1, through: 0, by: -1) {
+//        reversArray.append(array[item])
+//    }
+//    print(reversArray)
+//}
+//reversArray(array: arrayForRevers)
 
-func reversArrayStandart(array: [Int]) {
+func reversArrayStandart(array: [Int]) -> [Int] {
     let arrayRevers: [Int] = array.reversed()
-    print(arrayRevers)
+    return arrayRevers
 }
 reversArrayStandart(array: arrayForRevers)
 
-
+func reversArray(array: ClosedRange<Int>) -> [Int] {
+    var arrayForRevers: [Int] = []
+    for i in array {
+        arrayForRevers.append(i)
+    }
+    return reversArrayStandart(array: arrayForRevers)
+}
+reversArray(array: (1...10))
 
 
 
@@ -236,12 +245,16 @@ func doSports(push: Int, pull: Int, squats: Int) -> (push: Int, pull: Int, squat
     let sport = (push: push, pull: pull, squats: squats)
     return sport
 }
+
 var ivan = doSports(push: 11, pull: 13, squats: 13)
-var artem = doSports(push: 12, pull: 12, squats: 11)
-var alex = doSports(push: 13, pull: 10, squats: 15)
+var artem = doSports(push: 12, pull: 12, squats: 16)
+var alex = doSports(push: 15, pull: 10, squats: 15)
 
 
-func chempions () {
+func chempions(ivan: (push: Int, pull: Int, squats: Int),
+               artem: (push: Int, pull: Int, squats: Int),
+               alex: (push: Int, pull: Int, squats: Int)) {
+    
     var maxPush: [String: Int] = [:]
     maxPush.updateValue(ivan.0, forKey: "ivan")
     maxPush.updateValue(artem.0, forKey: "artem")
@@ -275,9 +288,70 @@ func chempions () {
         }
     }
 }
-chempions()
+chempions(ivan: ivan, artem: artem, alex: alex)
 
 
+
+
+func swapValuePush() {
+    var min: Int = 0
+    var max: Int = 0
+    if let i: Int = [ivan.push, artem.push, alex.push].min() {
+        min = i
+    }
+    if let i: Int = [ivan.push, artem.push, alex.push].max() {
+        max = i
+    }
+    if ivan.push == min && artem.push == max || ivan.push == max && artem.push == min {
+        swap(&ivan.push, &artem.push)
+    } else if ivan.push == min && alex.push == max || ivan.push == max && alex.push == min {
+        swap(&ivan.push, &alex.push)
+    } else if artem.push == min && alex.push == max || artem.push == max && alex.push == min {
+        swap(&artem.push, &alex.push)
+    }
+    print("После изменения значений количество отжиманий - \((ivan.push, artem.push, alex.push))")
+}
+swapValuePush()
+
+func swapValuePull() {
+    var min: Int = 0
+    var max: Int = 0
+    if let i: Int = [ivan.pull, artem.pull, alex.pull].min() {
+        min = i
+    }
+    if let i: Int = [ivan.pull, artem.pull, alex.pull].max() {
+        max = i
+    }
+    if ivan.pull == min && artem.pull == max || ivan.pull == max && artem.pull == min {
+        swap(&ivan.pull, &artem.pull)
+    } else if ivan.pull == min && alex.pull == max || ivan.pull == max && alex.pull == min {
+        swap(&ivan.pull, &alex.pull)
+    } else if artem.pull == min && alex.pull == max || artem.pull == max && alex.pull == min {
+        swap(&artem.pull, &alex.pull)
+    }
+    print("После изменения значений количество подтягиваний - \((ivan.pull, artem.pull, alex.pull))")
+}
+swapValuePull()
+
+func swapValueSquats() {
+    var min: Int = 0
+    var max: Int = 0
+    if let i: Int = [ivan.squats, artem.squats, alex.squats].min() {
+        min = i
+    }
+    if let i: Int = [ivan.squats, artem.squats, alex.squats].max() {
+        max = i
+    }
+    if ivan.squats == min && artem.squats == max || ivan.squats == max && artem.squats == min {
+        swap(&ivan.squats, &artem.squats)
+    } else if ivan.squats == min && alex.squats == max || ivan.squats == max && alex.squats == min {
+        swap(&ivan.squats, &alex.squats)
+    } else if artem.squats == min && alex.squats == max || artem.squats == max && alex.squats == min {
+        swap(&artem.squats, &alex.squats)
+    }
+    print("После изменения значений количество приседаний - \((ivan.squats, artem.squats, alex.squats))")
+}
+swapValuePull()
 
 
 // MARK: - Strings
